@@ -13,3 +13,7 @@ __pycache__/
 *.nca
 *.keys
 /setup-test.log
+# Linux (linux/README.md): Python environment, AC_DATA_DIR folder and RomFS mods
+/.venv-linux/
+/linux-data/
+/mods/
