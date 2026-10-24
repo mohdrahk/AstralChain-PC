@@ -46,6 +46,14 @@ dump is not needed again.
 A full build (122 units) took about 6 minutes here; with only the runtime changed, about 10 seconds. Checked
 by playing: the `upscaling` branch at 2560x1440, with `main` merged in for the depth clamp fix.
 
+## Updating
+
+`linux/update.sh` fetches the developer's `main` and `upscaling`, merges them into the checked-out branch
+(a README-only conflict keeps the local README; anything else aborts the merge), runs `build.py`, the
+fingerprint and the shader preparation under Proton, and copies new `run-env.txt` addresses into the launch
+wrapper (a script that exports the `AC_*` variables, `~/astral-fx` by default). Proton, prefix and wrapper are
+set at the top or through `PROTON`, `PREFIX` and `WRAPPER`. `--force` rebuilds when nothing is new.
+
 ## RomFS mods
 
 There is no mods folder, and `game/romfs.bin` is 10 GB. `romfs_mods.py` layers files onto it in place:
