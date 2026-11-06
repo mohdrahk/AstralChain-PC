@@ -48,8 +48,9 @@ by playing: the `upscaling` branch at 2560x1440, with `main` merged in for the d
 
 ## Updating
 
-`linux/update.sh` fetches the developer's `main` and `upscaling`, merges them into the checked-out branch
-(a README-only conflict keeps the local README; anything else aborts the merge), runs `build.py`, the
+`linux/update.sh` fetches the developer's `upscaling` branch and merges it into the checked-out branch. The
+developer re-applies `main`'s work onto `upscaling` as new commits, so merging both branches conflicts; set
+`AC_BRANCHES="origin/main origin/upscaling"` to merge others anyway. (A README-only conflict keeps the local README; anything else aborts the merge.) It then runs `build.py`, the
 fingerprint and the shader preparation under Proton, and copies new `run-env.txt` addresses into the launch
 wrapper (a script that exports the `AC_*` variables, `~/astral-fx` by default). Proton, prefix and wrapper are
 set at the top or through `PROTON`, `PREFIX` and `WRAPPER`. `--force` rebuilds when nothing is new.

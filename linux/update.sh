@@ -1,5 +1,5 @@
 #!/bin/bash
-# Update on Linux: pull the developer's main and upscaling branches into the local branch, rebuild trace.exe
+# Update on Linux: pull the developer's upscaling branch (AC_BRANCHES) into the local branch, rebuild trace.exe
 # with linux/build.py, rewrite the build fingerprint and prepare shaders under Proton, and refresh the
 # addresses from run-env.txt in the launch wrapper. RomFS mods in game/romfs.bin stay applied (the build reads
 # the image as it is).
@@ -14,7 +14,8 @@ PROJECT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 PROTON=${PROTON:-"$HOME/.local/share/Steam/compatibilitytools.d/Proton-CachyOS Latest/proton"}
 PREFIX=${PREFIX:-"$HOME/.local/share/Steam/steamapps/compatdata/2693640791"}  # its dosdevices/g: is the game folder
 WRAPPER=${WRAPPER:-"$HOME/astral-fx"}  # exports the AC_* variables, used by the Steam shortcut
-BRANCHES=(origin/main origin/upscaling)
+# upstream re-applies main onto upscaling under new hashes, so merging both conflicts; follow upscaling only
+read -ra BRANCHES <<< "${AC_BRANCHES:-origin/upscaling}"
 
 cd "$PROJECT"
 step() { printf '\n== %s\n' "$*"; }
