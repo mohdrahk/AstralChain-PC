@@ -48,7 +48,8 @@ by playing: the `upscaling` branch at 2560x1440, with `main` merged in for the d
 
 ## Updating
 
-`linux/update.sh` fetches the developer's `upscaling` branch and merges it into the checked-out branch. The
+`linux/update.sh` fetches the developer's branch and merges it into the checked-out branch: the checked-out
+branch's upstream (`git branch --set-upstream-to=origin/main`, or `origin/upscaling`), else `upscaling`. The
 developer re-applies `main`'s work onto `upscaling` as new commits, so merging both branches conflicts; set
 `AC_BRANCHES="origin/main origin/upscaling"` to merge others anyway. (A README-only conflict keeps the local README; anything else aborts the merge.) It then runs `build.py`, the
 fingerprint and the shader preparation under Proton, and copies new `run-env.txt` addresses into the launch
