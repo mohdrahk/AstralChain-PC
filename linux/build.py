@@ -48,6 +48,10 @@ def main():
     setup_game.ZIG = ZIG_DIR/'zig'
     setup_game.build_game()
     print('Built', setup_game.GAME_BUILD/'round-00'/'trace.exe')
+    # The shader precompiler is built the same way (zig.exe under Wine fails here too). setup_game finds it by
+    # a hash of its sources, the same on both sides, so it uses this one instead of building it again.
+    from astral_chain import shader_cache
+    print('Built', shader_cache.build_tool(setup_game.ZIG, setup_game.BUILD))
 
 
 if __name__ == '__main__':
